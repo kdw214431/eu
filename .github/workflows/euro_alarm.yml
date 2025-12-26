@@ -13,12 +13,12 @@ jobs:
       - name: 코드 가져오기
         uses: actions/checkout@v3
 
-      - name: 파이썬 설정
+      - name: 파이썬 설정 (버전 업그레이드)
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.11' # <-- 3.9에서 3.11로 변경! (이게 핵심)
 
-      - name: 라이브러리 설치 (필수 요소 포함)
+      - name: 라이브러리 설치
         run: |
           pip install --upgrade pip
           pip install yfinance requests pandas lxml
