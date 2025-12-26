@@ -38,7 +38,7 @@ st.title("💶 유로 환율 모니터링 & 텔레그램 알림")
 
 # 사이드바
 st.sidebar.header("설정")
-target_price = st.sidebar.number_input("목표 환율(원)", value=1450.0)
+target_price = st.sidebar.number_input("목표 환율(원)", value=1680.0)
 enable_monitoring = st.sidebar.checkbox("모니터링 시작")
 
 # 데이터 로드
