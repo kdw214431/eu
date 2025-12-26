@@ -2,10 +2,8 @@ name: Euro Alarm Bot
 
 on:
   schedule:
-    # 30분마다 실행 (국제표준시 기준이라 한국 시간과는 시차가 있지만, 
-    # 어차피 30분 간격으로 도는 건 똑같습니다)
-    - cron: '*/30 * * * *'
-  workflow_dispatch: # 수동으로 버튼 눌러서 실행 가능하게 함
+    - cron: '*/30 * * * *' # 30분마다 실행
+  workflow_dispatch: # 수동 실행 버튼
 
 jobs:
   run-bot:
@@ -20,12 +18,15 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: 라이브러리 설치
+      - name: 라이브러리 설치 (필수 요소 포함)
         run: |
-          pip install yfinance requests pandas
+          pip install --upgrade pip
+          pip install yfinance requests pandas lxml
 
       - name: 봇 실행
-        env: # 1단계에서 만든 비밀키를 봇에게 전달
+        env: 
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python bot.py
+        run: |
+          echo "봇을 실행합니다..."
+          python bot.py
